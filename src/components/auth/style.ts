@@ -70,3 +70,12 @@ export const Loginstyle = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+
+
+export const Verifystyle = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 30,
+
+  },
+});
