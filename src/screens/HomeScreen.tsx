@@ -5,9 +5,12 @@ function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Home Screen</Text>
-      <Button title="dsf" onPress={() => navigation.navigate("login")} />
+      <Button
+        title="Go To Login "
+        onPress={() => navigation.navigate("login/mobile-number")}
+      />
     </View>
   );
 }
 
-export default HomeScreen
+export default HomeScreen;
