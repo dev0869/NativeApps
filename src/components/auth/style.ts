@@ -1,13 +1,25 @@
-
-
 import { StyleSheet } from "react-native";
+
+export const GlobalStyle=StyleSheet.create({
+  heading:{
+    fontSize:24,
+    fontWeight:"bold",
+    marginBottom:12
+  },
+  smpara:{
+    fontSize:18,
+    textAlign:'center',
+    fontWeight:"500",
+    color: "rgb(61, 52, 52)",
+  }
+})
+
 
 export const Loginstyle = StyleSheet.create({
   background: {
     flex: 1,
     resizeMode: "contain",
     flexDirection: "column",
-    
   },
   container: {
     flex: 1,
@@ -15,7 +27,7 @@ export const Loginstyle = StyleSheet.create({
     justifyContent: "center",
   },
   textpad: {
-    position: 'relative',
+    position: "relative",
     top: -99,
   },
   title: {
@@ -38,7 +50,7 @@ export const Loginstyle = StyleSheet.create({
   },
   input: {
     width: "100%",
-    marginTop:4,
+    marginTop: 4,
     height: 55,
     borderColor: "#4857E4",
     borderWidth: 1,
@@ -52,14 +64,11 @@ export const Loginstyle = StyleSheet.create({
     width: "100%",
     position: "relative",
     top: 24,
-
-
-    
     alignItems: "center",
     justifyContent: "flex-end",
   },
   btnText: {
-    position: 'absolute',
+    position: "absolute",
     right: 0,
     top: 0,
     borderRadius: 15,
@@ -71,11 +80,29 @@ export const Loginstyle = StyleSheet.create({
   },
 });
 
-
 export const Verifystyle = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 30,
-
   },
+  imgcontainer: {
+    display: "flex",
+    alignItems: "center",
+  },
+  input:{
+    marginTop:40,
+    display:'flex',
+    gap:3,
+    justifyContent:'center',
+    flexDirection:'row'
+  },
+  inputs:{
+width:80,
+height:80,
+fontSize:26,
+borderRadius:9,
+textAlign:'center',
+backgroundColor:'#E6DFFA'
+  }
+  
 });
