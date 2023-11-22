@@ -1,24 +1,28 @@
-
-
 import React, { useState } from "react";
 import { login } from "../../../assets";
 import { Loginstyle } from "./style";
-import { View, Text, TextInput, TouchableOpacity, ImageBackground, StatusBar } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ImageBackground,
+  StatusBar,
+  Alert,
+} from "react-native";
 
-const Login = () => {
-  const [number1, setNumber1] = useState("+91");
-  const [password, setPassword] = useState("");
-  const [number2, setNumber2] = useState("+91");
-
-  const handleTextChange1 = (text: string) => {
-    if (text.match(/^\+91\d*$/)) {
-      setNumber1(text);
-    }
-  };
+const EnterNumber = () => {
+  const [mobile, setmobile] = useState("+91");
 
   const handleTextChange2 = (text: string) => {
+    console.log(mobile.length, mobile);
+    if (text.length > 10) {
+      Alert.alert("Error", "Mobile number should not exceed 10 digits", [
+        { text: "OK" },
+      ]);
+    }
     if (text.match(/^\+91\d*$/)) {
-      setNumber2(text);
+      setmobile(text);
     }
   };
 
@@ -40,7 +44,7 @@ const Login = () => {
               placeholder="Enter Mobile Number"
               keyboardType="numeric"
               onChangeText={(text) => handleTextChange2(text)}
-              value={number2}
+              value={mobile}
               placeholderTextColor="gray"
               selectionColor="red"
             />
@@ -55,4 +59,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default EnterNumber;
