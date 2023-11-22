@@ -1,317 +1,150 @@
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StatusBar,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  TextInput,
+} from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { Loginstyle } from "../auth/style";
+import { ProfileStyle } from "./style";
 
-// // import React, { useState, useRef } from "react";
-// // import { Verify } from "../../../assets";
-// // import { ProfileStyle } from "./style";
-// // import { Verifystyle, Loginstyle, GlobalStyle } from "../auth/style";
-// // import { View, Text, TextInput, TouchableOpacity, Image, StatusBar } from "react-native";
-
-// // const Pcreate: React.FC = () => {
-// //   const [verificationCodes, setVerificationCodes] = useState<string[]>(["", "", "", ""]);
-// //   const inputRefs = useRef<Array<TextInput | null>>(Array(4).fill(null));
-
-// //   const handleChange = (index: number, value: string) => {
-// //     setVerificationCodes((prevCodes) => {
-// //       const newCodes = [...prevCodes];
-// //       newCodes[index] = value;
-          
-// //       if (value.length === 1 && index < newCodes.length - 1) {
-// //         const nextIndex = index + 1;
-// //         const nextInputRef = inputRefs.current[nextIndex];
-
-// //         if (nextInputRef) {
-// //           nextInputRef.focus();
-// //         }
-// //       }
-
-// //       return newCodes;
-// //     });
-// //   };
-
-// //   return (
-// //     <>
-// //       <StatusBar backgroundColor="rgb(55, 61, 233)" barStyle="light-content" />
-
-// //       <View style={Verifystyle.container}>
-// //         <View style={Verifystyle.imgcontainer}>
-// //         <Text style={ProfileStyle.heading}>Profile</Text>
-// //           <Image
-// //             source={Verify}
-// //             style={{ width: 200, height: 200, marginBottom: 20 }}
-// //             onLoad={() => console.log("Image loaded")}
-// //             onError={(error) => console.error("Image failed to load", error)}
-// //           />
-
-// //           <Text style={GlobalStyle.heading}>Enter Verification Codes</Text>
-// //           <Text style={GlobalStyle.smpara}>
-// //             We are automatically a SVS send to your mobile number
-// //           </Text>
-// //         </View>
-
-// //         <View style={Verifystyle.input}>
-// //           {verificationCodes.map((code, index) => (
-// //             <TextInput
-// //               key={index}
-// //               ref={(el) => (inputRefs.current[index] = el)}
-// //               style={Verifystyle.inputs}
-// //               maxLength={1}
-// //               value={code}
-// //               keyboardType="numeric"
-// //               onChangeText={(text) => handleChange(index, text)}
-// //               onKeyPress={(event) => {
-// //                 if (event.nativeEvent.key === "Backspace" && index > 0) {
-// //                   const prevIndex = index - 1;
-// //                   const prevInputRef = inputRefs.current[prevIndex];
-
-// //                   if (prevInputRef) {
-// //                     prevInputRef.focus();
-// //                   }
-// //                 }
-// //               }}
-// //             />
-// //           ))}
-// //         </View>
-
-// //         <TouchableOpacity style={Loginstyle.button}>
-// //           <Text style={Loginstyle.btnText}>Verify</Text>
-// //         </TouchableOpacity>
-// //       </View>
-// //     </>
-// //   );
-// // };
-
-// // export default Pcreate;
-
-
-// import React, { useState, useRef } from "react";
-// import { Verify } from "../../../assets";
-// import { ProfileStyle } from "./style";
-// import { Verifystyle, Loginstyle, GlobalStyle } from "../auth/style";
-// import { View, Text, TextInput, TouchableOpacity, Image, StatusBar } from "react-native";
-// import * as ImagePicker from "react-native-image-picker"; // Import ImagePicker
-
-// const Pcreate: React.FC = () => {
-//   const [verificationCodes, setVerificationCodes] = useState<string[]>(["", "", "", ""]);
-//   const [selectedImage, setSelectedImage] = useState<string | null>(null); // New state for the selected image
-//   const inputRefs = useRef<Array<TextInput | null>>(Array(4).fill(null));
-
-//   const handleChange = (index: number, value: string) => {
-//     setVerificationCodes((prevCodes) => {
-//       const newCodes = [...prevCodes];
-//       newCodes[index] = value;
-
-//       if (value.length === 1 && index < newCodes.length - 1) {
-//         const nextIndex = index + 1;
-//         const nextInputRef = inputRefs.current[nextIndex];
-
-//         if (nextInputRef) {
-//           nextInputRef.focus();
-//         }
-//       }
-
-//       return newCodes;
-//     });
-//   };
-
-//   const pickImage = () => {
-//     ImagePicker.launchImageLibrary({}, (response) => {
-//       if (response.uri) {
-//         setSelectedImage(response.uri);
-//       }
-//     });
-//   };
-
-//   return (
-//     <>
-//       <StatusBar backgroundColor="rgb(55, 61, 233)" barStyle="light-content" />
-
-//       <View style={Verifystyle.container}>
-//         <View style={Verifystyle.imgcontainer}>
-//           <Text style={ProfileStyle.heading}>Profile</Text>
-
-//           {/* Circular div for the image */}
-//           <TouchableOpacity onPress={pickImage} style={styles.circle}>
-//             {selectedImage ? (
-//               <Image source={{ uri: selectedImage }} style={styles.imageInCircle} />
-//             ) : (
-//               <Text style={styles.addImageText}>Add Image</Text>
-//             )}
-//           </TouchableOpacity>
-
-//           <Text style={GlobalStyle.heading}>Enter Verification Codes</Text>
-//           <Text style={GlobalStyle.smpara}>
-//             We are automatically sending a SVS to your mobile number
-//           </Text>
-//         </View>
-
-//         <View style={Verifystyle.input}>
-//           {verificationCodes.map((code, index) => (
-//             <TextInput
-//               key={index}
-//               ref={(el) => (inputRefs.current[index] = el)}
-//               style={Verifystyle.inputs}
-//               maxLength={1}
-//               value={code}
-//               keyboardType="numeric"
-//               onChangeText={(text) => handleChange(index, text)}
-//               onKeyPress={(event) => {
-//                 if (event.nativeEvent.key === "Backspace" && index > 0) {
-//                   const prevIndex = index - 1;
-//                   const prevInputRef = inputRefs.current[prevIndex];
-
-//                   if (prevInputRef) {
-//                     prevInputRef.focus();
-//                   }
-//                 }
-//               }}
-//             />
-//           ))}
-//         </View>
-
-//         <TouchableOpacity style={Loginstyle.button}>
-//           <Text style={Loginstyle.btnText}>Verify</Text>
-//         </TouchableOpacity>
-//       </View>
-//     </>
-//   );
-// };
-
-// const styles = {
-//   circle: {
-//     width: 120,
-//     height: 120,
-//     borderRadius: 60,
-//     backgroundColor: "#ccc",
-//     justifyContent: "center",
-//     alignItems: "center",
-//     marginBottom: 20,
-//     overflow: "hidden",
-//   },
-//   imageInCircle: {
-//     width: "100%",
-//     height: "100%",
-//     borderRadius: 60,
-//   },
-//   addImageText: {
-//     color: "#555",
-//   },
-//   // ... other styles
-// };
-
-// export default Pcreate;
-
-
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import * as ImagePicker from 'react-native-image-picker';
-
-interface ImageUploadProps {}
-
-const Pcreate: React.FC<ImageUploadProps> = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(
-    'http://i.pravatar.cc/500?img=7'
+export default function Pcreate() {
+  const [number2, setNumber2] = useState("");
+  const [file, setFile] = useState<null | string>(
+    "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg?w=740&t=st=1699874098~exp=1699874698~hmac=2b658424d49056aa9e1471560b2a60b95dcc9c8d9277f6db66ea9e436de16757"
   );
+  console.log(file);
+  const handleTextChange2 = (text: string) => {
+    setNumber2(text);
+  };
 
-  const pickImage = () => {
-    ImagePicker.launchImageLibrary(
-      { mediaType: 'photo', includeBase64: false },
-      (response) => {
-        if (!response.didCancel && !response.error) {
-          setSelectedImage(response.uri);
-        }
+  const [error, setError] = useState(null);
+  const [value, onChangeText] = React.useState("Enter Address");
+
+  const pickImage = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (status !== "granted") {
+      Alert.alert(
+        "Permission Denied",
+        `Sorry, we need camera  
+                 roll permission to upload images.`
+      );
+    } else {
+      const result = await ImagePicker.launchImageLibraryAsync();
+
+      if (!result.cancelled) {
+        console.log(result);
+
+        setFile(result.assets[0].uri);
+
+        setError(null);
       }
-    );
+    }
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>
-        React Native Image Upload
-        <Text style={styles.small}> with preview</Text>
-      </Text>
-      <View style={styles.avatarUpload}>
-        <View style={styles.avatarEdit}>
-          <TouchableOpacity onPress={pickImage}>
-            <View style={styles.avatarEditButton}></View>
+    <>
+      <StatusBar backgroundColor="rgb(55, 61, 233)" barStyle="light-content" />
+
+      <View style={ProfileStyle.container}>
+        <Text style={ProfileStyle.heading}>Create Profile</Text>
+ 
+        <TouchableOpacity style={ProfileStyle.profile} onPress={pickImage}>
+          <Image source={{ uri: file }} style={ProfileStyle.image} />
+        </TouchableOpacity>
+
+        <View style={Loginstyle.inputContainer}>
+          <TextInput
+            style={ProfileStyle.input}
+            placeholder="Enter Mobile Number"
+            onChangeText={(text) => handleTextChange2(text)}
+            value={number2}
+            placeholderTextColor="voilet"
+            selectionColor="red"
+          />
+          <TextInput
+            style={ProfileStyle.input2}
+            placeholder="Enter Email ID"
+            onChangeText={(text) => handleTextChange2(text)}
+            value={number2}
+            placeholderTextColor="voilet"
+            selectionColor="red"
+          />
+          <TextInput
+            style={ProfileStyle.input2}
+            placeholder="Enter PinCode"
+            onChangeText={(text) => handleTextChange2(text)}
+            value={number2}
+            placeholderTextColor="voilet"
+            selectionColor="red"
+          />
+          <TextInput
+            editable
+            style={ProfileStyle.input3}
+        
+            maxLength={40}
+            onChangeText={(text) => onChangeText(text)}
+            value={value}
+          />
+        <TouchableOpacity style={Loginstyle.button}>
+            <Text style={Loginstyle.btnText}>Continue</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.avatarPreview}>
-          {selectedImage && (
-            <Image source={{ uri: selectedImage }} style={styles.imagePreview} />
-          )}
-        </View>
+
       </View>
-    </View>
+    </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'whitesmoke',
-    fontFamily: 'Open Sans, sans-serif',
-    maxWidth: 960,
-    margin: 30,
-    padding: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
   },
-  heading: {
+  header: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 20,
+    marginBottom: 16,
   },
-  small: {
-    display: 'flex',
-    fontSize: 15,
-    paddingTop: 8,
-    color: 'gray',
+  button: {
+    backgroundColor: "#007AFF",
+    padding: 10,
+    borderRadius: 8,
+    marginBottom: 16,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
+    elevation: 5,
   },
-  avatarUpload: {
-    position: 'relative',
-    maxWidth: 205,
-    margin: 50,
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "bold",
   },
-  avatarEdit: {
-    position: 'absolute',
-    right: 12,
-    zIndex: 1,
-    top: 10,
+  imageContainer: {
+    borderRadius: 8,
+    marginBottom: 16,
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
+    elevation: 5,
   },
-  avatarEditButton: {
-    width: 34,
-    height: 34,
-    marginBottom: 0,
-    borderRadius: 100,
-    backgroundColor: '#FFFFFF',
-    borderColor: 'transparent',
-    borderWidth: 1,
-    shadowColor: 'rgba(0, 0, 0, 0.12)',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.8,
-    cursor: 'pointer',
-    fontWeight: 'normal',
-    transition: 'all 0.2s ease-in-out',
+  image: {
+    width: 200,
+    height: 200,
+    borderRadius: 8,
   },
-  avatarPreview: {
-    width: 192,
-    height: 192,
-    position: 'relative',
-    borderRadius: 100,
-    borderWidth: 6,
-    borderColor: '#F8F8F8',
-    shadowColor: 'rgba(0, 0, 0, 0.1)',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.8,
-  },
-  imagePreview: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 100,
+  errorText: {
+    color: "red",
+    marginTop: 16,
   },
 });
-
-export default Pcreate;

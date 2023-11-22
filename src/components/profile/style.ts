@@ -1,17 +1,69 @@
 import { StyleSheet } from "react-native";
 
-export const ProfileStyle=StyleSheet.create({
-  heading:{
-    marginTop:34,
-    fontSize:24,
-    fontWeight:"bold",
-    marginBottom:12
+export const ProfileStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
   },
-  smpara:{
-    fontSize:18,
-    textAlign:'center',
-    fontWeight:"500",
+  input: {
+    width: 300,
+    marginTop: 30,
+    height: 55,    
+    borderColor: "#4857E4",
+    borderWidth: 1,
+    borderRadius: 15,
+    fontSize: 20,
+    paddingLeft: 20,
+    backgroundColor: "transparent",
+    color: "#4857E4",
+  },
+  input2:{
+    width: 300,
+    marginTop: 20,
+    height: 55,    
+    borderColor: "#4857E4",
+    borderWidth: 1,
+    borderRadius: 15,
+    fontSize: 20,
+    paddingLeft: 20,
+    backgroundColor: "transparent",
+    color: "#4857E4",
+  },
+  input3:{
+    width: 300,
+    marginTop: 20,
+    height: 85,    
+    borderColor: "#4857E4",
+    borderWidth: 1,
+    borderRadius: 15,
+    fontSize: 20,
+    paddingLeft: 20,
+    backgroundColor: "transparent",
+    color: "#4857E4",
+  },
+  inputs: {
+    width: 90,
+    height: 80,
+    fontSize: 26,
+    borderRadius: 9,
+    textAlign: "center",
+    backgroundColor: "#4857E4",
+  },
+  image: { width: 90, borderRadius: 40, height: 90 },
+  heading: {
+    color:'#4857E4',
+    marginTop: 34,
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 12,
+  },
+  smpara: {
+    fontSize: 18,
+    textAlign: "center",
+    fontWeight: "500",
     color: "rgb(61, 52, 52)",
-  }
-})
-
+  },
+  profile: {
+    borderRadius: 36,
+  },
+});

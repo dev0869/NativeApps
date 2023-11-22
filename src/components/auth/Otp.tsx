@@ -54,7 +54,7 @@ const Otp: React.FC = () => {
               maxLength={1}
               value={code}
               keyboardType="numeric"
-              onChangeText={(text) => handleChange(index, text)}
+              onChangeText={(text) => handleChange(index, text)}  
               onKeyPress={(event) => {
                 if (event.nativeEvent.key === "Backspace" && index > 0) {
                   const prevIndex = index - 1;
