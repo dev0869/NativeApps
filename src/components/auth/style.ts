@@ -1,19 +1,18 @@
 import { StyleSheet } from "react-native";
 
-export const GlobalStyle=StyleSheet.create({
-  heading:{
-    fontSize:24,
-    fontWeight:"bold",
-    marginBottom:12
+export const GlobalStyle = StyleSheet.create({
+  heading: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 12,
   },
-  smpara:{
-    fontSize:18,
-    textAlign:'center',
-    fontWeight:"500",
+  smpara: {
+    fontSize: 18,
+    textAlign: "center",
+    fontWeight: "500",
     color: "rgb(61, 52, 52)",
-  }
-})
-
+  },
+});
 
 export const Loginstyle = StyleSheet.create({
   background: {
@@ -89,20 +88,21 @@ export const Verifystyle = StyleSheet.create({
     display: "flex",
     alignItems: "center",
   },
-  input:{
-    marginTop:40,
-    display:'flex',
-    gap:3,
-    justifyContent:'center',
-    flexDirection:'row'
+  input: {
+    marginTop: 40,
+    display: "flex",
+    gap: 3,
+    justifyContent: "center",
+    flexDirection: "row",
   },
-  inputs:{
-width:80,
-height:80,
-fontSize:26,
-borderRadius:9,
-textAlign:'center',
-backgroundColor:'#E6DFFA'
-  }
+  inputs: {
+    width: 40,
+    height: 40,
+    fontSize: 20,
+    padding:6,
+    borderRadius: 9,
+    textAlign: "center",
+    backgroundColor: "#E6DFFA",
   
+  },
 });

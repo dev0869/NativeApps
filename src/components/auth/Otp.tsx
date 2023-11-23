@@ -1,12 +1,34 @@
-
 import React, { useState, useRef } from "react";
 import { Verify } from "../../../assets";
 import { Verifystyle, Loginstyle, GlobalStyle } from "./style";
-import { View, Text, TextInput, TouchableOpacity, Image, StatusBar } from "react-native";
-
-const Otp: React.FC = () => {
-  const [verificationCodes, setVerificationCodes] = useState<string[]>(["", "", "", ""]);
-  const inputRefs = useRef<Array<TextInput | null>>(Array(4).fill(null));
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  StatusBar,
+} from "react-native";
+import { useAppSelector } from "../../redux/hook";
+import { signInWithCredential, PhoneAuthProvider } from "firebase/auth";
+import { auth } from "../../configs/firebaseconfig";
+import {
+  AddDocument,
+  GetDocById,
+  handleFirebaseErr,
+} from "../../utils/firebase";
+signInWithCredential;
+const Otp = ({ navigation }: { navigation: navigation }) => {
+  const [verificationCodes, setVerificationCodes] = useState<string[]>([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
+  const [errmessage, setErrmessage] = useState("");
+  const inputRefs = useRef<Array<TextInput | null>>(Array(6).fill(null));
 
   const handleChange = (index: number, value: string) => {
     setVerificationCodes((prevCodes) => {
@@ -25,7 +47,29 @@ const Otp: React.FC = () => {
       return newCodes;
     });
   };
+  const verificationId = useAppSelector((st) => st.auth.verificationId);
 
+  const confirmCode = async () => {
+    try {
+      const credential = PhoneAuthProvider.credential(
+        verificationId,
+        verificationCodes.join("")
+      );
+      const res = await signInWithCredential(auth, credential);
+      const isSignUp = await GetDocById("user", res.user.uid);
+      if (!isSignUp?.name) {
+        await AddDocument("user", res.user.uid, {
+          mobile: res.user.phoneNumber,
+        });
+        return navigation.navigate("login/profile");
+      }
+      navigation.navigate("Home");
+    } catch (error) {
+      const err = handleFirebaseErr(error as error);
+      typeof err == "string" && setErrmessage(err);
+      console.log(err);
+    }
+  };
   return (
     <>
       <StatusBar backgroundColor="rgb(55, 61, 233)" barStyle="light-content" />
@@ -35,7 +79,6 @@ const Otp: React.FC = () => {
           <Image
             source={Verify}
             style={{ width: 200, height: 200, marginBottom: 20 }}
-            onLoad={() => console.log("Image loaded")}
             onError={(error) => console.error("Image failed to load", error)}
           />
 
@@ -54,7 +97,7 @@ const Otp: React.FC = () => {
               maxLength={1}
               value={code}
               keyboardType="numeric"
-              onChangeText={(text) => handleChange(index, text)}  
+              onChangeText={(text) => handleChange(index, text)}
               onKeyPress={(event) => {
                 if (event.nativeEvent.key === "Backspace" && index > 0) {
                   const prevIndex = index - 1;
@@ -69,7 +112,8 @@ const Otp: React.FC = () => {
           ))}
         </View>
 
-        <TouchableOpacity style={Loginstyle.button}>
+        <Text style={{ color: "red" }}>{errmessage}</Text>
+        <TouchableOpacity onPress={confirmCode} style={Loginstyle.button}>
           <Text style={Loginstyle.btnText}>Verify</Text>
         </TouchableOpacity>
       </View>

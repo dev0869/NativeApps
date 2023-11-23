@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { login } from "../../../assets";
 import { Loginstyle } from "./style";
 import {
@@ -10,22 +10,45 @@ import {
   StatusBar,
   Alert,
 } from "react-native";
-
-const EnterNumber = () => {
+import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
+import { auth, firebaseConfig } from "../../configs/firebaseconfig";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { setVerificationId } from "../../features/auth/authSlice";
+import { PhoneAuthProvider } from "firebase/auth";
+import { handleFirebaseErr } from "../../utils/firebase";
+const EnterNumber = ({ navigation }: { navigation: navigation }) => {
   const [mobile, setmobile] = useState("+91");
-
-  const handleTextChange2 = (text: string) => {
-    console.log(mobile.length, mobile);
-    if (text.length > 10) {
-      Alert.alert("Error", "Mobile number should not exceed 10 digits", [
-        { text: "OK" },
-      ]);
-    }
-    if (text.match(/^\+91\d*$/)) {
+  const [errmessage, setErrmessage] = useState("");
+  const dispatch = useAppDispatch();
+  const recaptchaVerifier: any = useRef(null);
+  const handlemobile = (text: string) => {
+    if (text.length < 13) {
       setmobile(text);
+      return;
+    }
+    if (mobile.length == 13)
+      return Alert.alert("Mobile number should not be greater than 10 digits");
+    setmobile(text);
+  };
+  const sendVerification = async () => {
+    setErrmessage("")
+    const number = mobile.split("+91")[1];
+    if (number.length < 10) return Alert.alert("Invalid Mobile number");
+    try {
+      const provider = new PhoneAuthProvider(auth);
+      const res = await provider.verifyPhoneNumber(
+        mobile,
+        recaptchaVerifier?.current
+      );
+      dispatch(setVerificationId(res));
+      navigation.navigate("login/verify-otp");
+    } catch (error) {
+      const err = handleFirebaseErr(error as error);
+      typeof err == "string" && setErrmessage(err);
+      throw err;
     }
   };
-
+  console.log(useAppSelector((st)=>st.auth.user))
   return (
     <>
       <StatusBar backgroundColor="rgb(55, 61, 233)" barStyle="light-content" />
@@ -43,14 +66,23 @@ const EnterNumber = () => {
               style={Loginstyle.input}
               placeholder="Enter Mobile Number"
               keyboardType="numeric"
-              onChangeText={(text) => handleTextChange2(text)}
+              onChangeText={handlemobile}
               value={mobile}
               placeholderTextColor="gray"
               selectionColor="red"
             />
           </View>
+          <Text style={{color:"red"}}>{errmessage}</Text>
 
-          <TouchableOpacity style={Loginstyle.button}>
+          {!errmessage &&<FirebaseRecaptchaVerifierModal
+            ref={recaptchaVerifier}
+            firebaseConfig={firebaseConfig}
+          />}
+
+          <TouchableOpacity
+            onPress={sendVerification}
+            style={Loginstyle.button}
+          >
             <Text style={Loginstyle.btnText}>Login</Text>
           </TouchableOpacity>
         </View>
