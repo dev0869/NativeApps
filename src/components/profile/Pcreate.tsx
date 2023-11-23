@@ -54,7 +54,7 @@ export default function Pcreate() {
 
       <View style={ProfileStyle.container}>
         <Text style={ProfileStyle.heading}>Create Profile</Text>
- 
+
         <TouchableOpacity style={ProfileStyle.profile} onPress={pickImage}>
           <Image source={{ uri: file }} style={ProfileStyle.image} />
         </TouchableOpacity>
@@ -87,16 +87,14 @@ export default function Pcreate() {
           <TextInput
             editable
             style={ProfileStyle.input3}
-        
             maxLength={40}
             onChangeText={(text) => onChangeText(text)}
             value={value}
           />
-        <TouchableOpacity style={Loginstyle.button}>
+          <TouchableOpacity style={Loginstyle.button}>
             <Text style={Loginstyle.btnText}>Continue</Text>
           </TouchableOpacity>
         </View>
-
       </View>
     </>
   );

@@ -53,7 +53,7 @@ export const Loginstyle = StyleSheet.create({
     height: 55,
     borderColor: "#4857E4",
     borderWidth: 1,
-    borderRadius: 15,
+    borderRadius: 12,
     fontSize: 24,
     paddingLeft: 20,
     backgroundColor: "transparent",
@@ -69,13 +69,18 @@ export const Loginstyle = StyleSheet.create({
   btnText: {
     position: "absolute",
     right: 0,
+
     top: 0,
-    borderRadius: 15,
-    padding: 12,
+    textAlign:'center',
+    borderRadius: 8,
+    paddingTop:10 ,
+    paddingBottom:12,
+    paddingLeft:20,
+    paddingRight:20,
     backgroundColor: "#4857E4",
     color: "white",
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 600,
   },
 });
 

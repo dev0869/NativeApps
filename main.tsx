@@ -12,35 +12,20 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   const [user, setUser] = useState<Record<string, any> | null>(null);
 
-  useLayoutEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      // onAuthStateChanged is an observer that gets called when the authentication state changes
 
-      if (user) {
-        // User is signed in
-        setUser(user);
-      } else {
-        // User is signed out
-        setUser(null);
-      }
-    });
-
-    // Cleanup the observer when the component unmounts
-    return () => unsubscribe();
-  }, []); 
   console.log(user)
   return (
     <>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={`${user ? "Home" : "login/mobile-number"}`}
+          initialRouteName={`${user ? "Home" : "login/profile"}`}
         >
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen
             options={{ title: "Login " }}
             name="login/mobile-number"
             component={EnterNumber}
-          />
+          />  
           <Stack.Screen
             options={{ title: "OTP " }}
             name="login/verify-otp"

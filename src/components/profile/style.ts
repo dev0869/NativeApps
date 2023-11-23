@@ -11,7 +11,7 @@ export const ProfileStyle = StyleSheet.create({
     height: 55,    
     borderColor: "#4857E4",
     borderWidth: 1,
-    borderRadius: 15,
+    borderRadius: 12,
     fontSize: 20,
     paddingLeft: 20,
     backgroundColor: "transparent",
