@@ -5,8 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import Otp from "./src/components/auth/Otp";
 import Pcreate from "./src/components/profile/Pcreate";
-import GetUser from "./src/utils/getUser";
-import { auth } from "./src/configs/firebaseconfig";
+
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -18,7 +17,7 @@ const App = () => {
     <>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={`${user ? "Home" : "login/profile"}`}
+          initialRouteName={`${!user ? "Home" : "login/profile"}`}
         >
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen
