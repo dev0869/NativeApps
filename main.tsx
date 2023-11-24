@@ -15,7 +15,7 @@ const App = () => {
     <>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={`${!user ? "Main" : "login/profile"}`}
+          initialRouteName={`${!user ? "Home" : "login/profile"}`}
         >
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen
