@@ -5,35 +5,39 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import Otp from "./src/components/auth/Otp";
 import Pcreate from "./src/components/profile/Pcreate";
-
+import MainContainer from "./src/components/navigation/MainContainer";
 
 const Stack = createNativeStackNavigator();
 const App = () => {
   const [user, setUser] = useState<Record<string, any> | null>(null);
 
-
-  console.log(user)
+  console.log(user);
   return (
     <>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={`${!user ? "Home" : "login/profile"}`}
+          initialRouteName={`${!user ? "Main" : "login/profile"}`}
         >
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen
-            options={{ title: "Login " }}
+       options={{headerShown: false}}
             name="login/mobile-number"
             component={EnterNumber}
-          />  
+          />
           <Stack.Screen
-            options={{ title: "OTP " }}
+            options={{headerShown: false}}
             name="login/verify-otp"
             component={Otp}
           />
           <Stack.Screen
-            options={{ title: "Add Profile " }}
+            options={{  headerShown: false }}
             name="login/profile"
             component={Pcreate}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Main"
+            component={MainContainer}
           />
         </Stack.Navigator>
       </NavigationContainer>
