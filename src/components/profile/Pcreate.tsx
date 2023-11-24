@@ -364,7 +364,6 @@ export default function Pcreate() {
   };
 
   const onSubmit = (data: FormData) => {
-    // Handle form submission here
     console.log(data);
   };
 
