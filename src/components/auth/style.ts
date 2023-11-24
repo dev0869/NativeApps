@@ -12,6 +12,9 @@ export const GlobalStyle = StyleSheet.create({
     fontWeight: "500",
     color: "rgb(61, 52, 52)",
   },
+  layout:{
+    padding:12
+  }
 });
 
 export const Loginstyle = StyleSheet.create({
