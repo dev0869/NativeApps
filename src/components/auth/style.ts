@@ -53,7 +53,7 @@ export const Loginstyle = StyleSheet.create({
     height: 55,
     borderColor: "#4857E4",
     borderWidth: 1,
-    borderRadius: 12,
+    borderRadius: 15,
     fontSize: 24,
     paddingLeft: 20,
     backgroundColor: "transparent",
@@ -80,7 +80,7 @@ export const Loginstyle = StyleSheet.create({
     backgroundColor: "#4857E4",
     color: "white",
     fontSize: 20,
-    fontWeight: 600,
+    fontWeight: '600',
   },
 });
 
