@@ -43,7 +43,7 @@ const HomeScreen = () => {
               </Text>
             </View>
 
-            <TouchableOpacity >
+            <TouchableOpacity style={{backgroundColor:"red"}} >
               <FontAwesomeIcon icon="bars" />
               <Text>Go To Login</Text>
             </TouchableOpacity>
