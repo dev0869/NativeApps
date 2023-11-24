@@ -7,7 +7,6 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faSquareCheck } from "@fortawesome/free-solid-svg-icons/faSquareCheck";
 import { faCode } from "@fortawesome/free-solid-svg-icons/faCode";
 import { GlobalStyle, Loginstyle } from "../components/auth/style";
-import SimpleForm from "../components/forms/ProfileForm";
 type props = {
   navigation: NativeStackNavigationProp<any, "login/mobile-number">;
 };
