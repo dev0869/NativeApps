@@ -16,6 +16,8 @@ import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { setVerificationId } from "../../features/auth/authSlice";
 import { PhoneAuthProvider } from "firebase/auth";
 import { handleFirebaseErr } from "../../utils/firebase";
+
+
 const EnterNumber = ({ navigation }: { navigation: navigation }) => {
   const [mobile, setmobile] = useState("+91");
   const [errmessage, setErrmessage] = useState("");
@@ -31,7 +33,7 @@ const EnterNumber = ({ navigation }: { navigation: navigation }) => {
     setmobile(text);
   };
   const sendVerification = async () => {
-    setErrmessage("")
+    setErrmessage("");
     const number = mobile.split("+91")[1];
     if (number.length < 10) return Alert.alert("Invalid Mobile number");
     try {
@@ -48,11 +50,9 @@ const EnterNumber = ({ navigation }: { navigation: navigation }) => {
       throw err;
     }
   };
-  console.log(useAppSelector((st)=>st.auth.user))
   return (
     <>
       <StatusBar backgroundColor="rgb(55, 61, 233)" barStyle="light-content" />
-
       <ImageBackground source={login} style={Loginstyle.background}>
         <View style={Loginstyle.container}>
           <View style={Loginstyle.textpad}>
@@ -72,12 +72,14 @@ const EnterNumber = ({ navigation }: { navigation: navigation }) => {
               selectionColor="red"
             />
           </View>
-          <Text style={{color:"red"}}>{errmessage}</Text>
+          <Text style={{ color: "red" }}>{errmessage}</Text>
 
-          {!errmessage &&<FirebaseRecaptchaVerifierModal
-            ref={recaptchaVerifier}
-            firebaseConfig={firebaseConfig}
-          />}
+          {!errmessage && (
+            <FirebaseRecaptchaVerifierModal
+              ref={recaptchaVerifier}
+              firebaseConfig={firebaseConfig}
+            />
+          )}
 
           <TouchableOpacity
             onPress={sendVerification}
