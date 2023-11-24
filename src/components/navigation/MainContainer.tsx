@@ -3,10 +3,10 @@
 import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import HomeScreen from "./screens/HomeScreen";
-import DetailScreen from "./screens/DetailScreen";
-import SettingScreen from "./screens/SettingScreen";
-import UserScreen from "./screens/UserScreen";
+import HomeScreen from "../../screens/HomeScreen";
+import DetailScreen from "../../screens/DetailScreen";
+import SettingScreen from "../../screens/SettingScreen";
+import UserScreen from "../../screens/UserScreen";
 
 const homeName = "Home";
 const detailsName = "Details";
