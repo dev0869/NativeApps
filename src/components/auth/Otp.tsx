@@ -60,6 +60,7 @@ const Otp = ({ navigation }: { navigation: navigation }) => {
       if (!isSignUp?.name) {
         await AddDocument("user", res.user.uid, {
           mobile: res.user.phoneNumber,
+          id: res.user.uid,
         });
         return navigation.navigate("login/profile");
       }
