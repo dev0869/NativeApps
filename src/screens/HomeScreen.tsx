@@ -1,12 +1,11 @@
 import { View, Text, Button, TouchableOpacity } from "react-native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faMugSaucer } from "@fortawesome/free-solid-svg-icons/faMugSaucer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faSquareCheck } from "@fortawesome/free-solid-svg-icons/faSquareCheck";
 import { faCode } from "@fortawesome/free-solid-svg-icons/faCode";
-import { GlobalStyle, Loginstyle } from "../components/auth/style";
+import { Loginstyle } from "../components/auth/style";
 type props = {
   navigation: NativeStackNavigationProp<any, "login/mobile-number">;
 };

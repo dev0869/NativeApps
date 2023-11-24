@@ -5,13 +5,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/HomeScreen";
 import Otp from "./src/components/auth/Otp";
 import Pcreate from "./src/components/profile/Pcreate";
+import GetUser from "./src/utils/getUser";
 import MainContainer from "./src/components/navigation/MainContainer";
 
 const Stack = createNativeStackNavigator();
 const App = () => {
-  const [user, setUser] = useState<Record<string, any> | null>(null);
-
-  console.log(user);
+  const user = GetUser();
   return (
     <>
       <NavigationContainer>
