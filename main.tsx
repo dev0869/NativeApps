@@ -7,10 +7,10 @@ import Pcreate from "./src/components/profile/Pcreate";
 import GetUser from "./src/utils/getUser";
 import MainContainer from "./src/components/navigation/MainContainer";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBars, fab, faSquareCheck, faCode } from "./src/ui/icons/fontawesone";
+import { faBars, fab, faSquareCheck, faCode ,faMagnifyingGlass} from "./src/ui/icons/fontawesone";
 const Stack = createNativeStackNavigator();
 const App = () => {
-  library.add(fab, faSquareCheck, faCode, faBars);
+  library.add(fab, faSquareCheck, faCode, faBars,faMagnifyingGlass);
   const user = GetUser();
   return (
     <>

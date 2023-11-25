@@ -20,8 +20,8 @@ function MainContainer() {
     <Tab.Navigator
       initialRouteName={homeName}
       screenOptions={({ route }) => ({
-        tabBarStyle: { height: 65, backgroundColor: "#4C5CEB" },
-        tabBarActiveBackgroundColor: "#0d22a8",
+        tabBarStyle: { height: 65, backgroundColor: "#7A78FF" },
+        tabBarActiveBackgroundColor: "#4C5CEB",
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           let rn = route.name;

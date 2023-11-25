@@ -3,6 +3,7 @@ import { Bg } from "../../assets";
 import {
   View,
   ImageBackground,
+  ScrollView,
 
 } from "react-native";
 import { GlobalStyle } from "../components/auth/style";
@@ -13,10 +14,17 @@ const HomeScreen = () => {
   return (
     <>
       <ImageBackground source={Bg} style={{ flex: 1 }}>
+      <ScrollView>
+
+
         <View style={GlobalStyle.layout}>
           <Navbar />
+          <br />
+          <br />
           <MenuItems />
         </View>
+        <br /><br />
+      </ScrollView>
       </ImageBackground>
     </>
   );
